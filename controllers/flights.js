@@ -4,11 +4,13 @@ function index(req, res) {
   Flight.find({})
   .then(flights => {
     res.render('flights/index',{
-      airline,
-      airport,
-      flightNo,
-      departs
+      flights,
+      title: 'All Flights'
     })
+  }),
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
   })
 }
 
