@@ -80,6 +80,22 @@ function update(req, res) {
   })
 }
 
+function addTicket(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    flight.tickets.push(req.body)
+    console.log(req.body)
+    flight.save()
+    .then(() => {
+      res.redirect(`/flights/${flight._id}`)
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/')
+    })
+  })
+}
+
 export {
   index, 
   newFlight as new,
@@ -87,5 +103,6 @@ export {
   show,
   deleteMovie as delete,
   edit,
-  update
+  update,
+  addTicket
 }
