@@ -32,7 +32,8 @@ const flightSchema = new Schema ({
     type: Date,
     default: oneYearFromNow()
   },
-  tickets: [ticketSchema]
+  tickets: [ticketSchema],
+  meals: [{type: Schema.Types.ObjectId, ref:'Meal'}]
 })
 
 function oneYearFromNow() {
